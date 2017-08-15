@@ -11,7 +11,7 @@ export default function setRoutes(app) {
 
   // Heroes
   router.route('/heroes').get(heroCtrl.getAll);
-  router.route('/heroes/count').get(heroCtrl.count);
+  router.route('/heros/count').get(heroCtrl.count);
   router.route('/hero').post(heroCtrl.insert);
   router.route('/hero/:id').get(heroCtrl.get);
   router.route('/hero/:id').put(heroCtrl.update);

@@ -7,25 +7,24 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService {
-    private baseUrl = '/api';  // URL to web api
     private headers = new Headers({'Content-Type': 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
 
     constructor(private http: Http) { }
 
     getHeroes(): Promise<Hero[]> {
-        const url = `${this.baseUrl}/heroes`;
+        const url = `/api/heroes`;
         return this.http.get(url)
                .toPromise()
-               .then(response => response.json().data as Hero[])
+               .then(response => response.json() as Hero[])
                .catch(this.handleError);
     }
 
-    getHero(id: number): Promise<Hero> {
-        const url = `${this.baseUrl}/hero/${id}`;
+    getHero(id): Promise<Hero> {
+        const url = `/api/hero/${id}`;
         return this.http.get(url)
                    .toPromise()
-                   .then(response => response.json().data as Hero)
+                   .then(response => response.json() as Hero)
                    .catch(this.handleError);
     }
 
@@ -35,15 +34,16 @@ export class HeroService {
     }
 
     create(name: string): Promise<Hero> {
-    return this.http
-        .post(this.baseUrl, JSON.stringify({name: name}), {headers: this.headers})
-        .toPromise()
-        .then(res => res.json().data as Hero)
-        .catch(this.handleError);
+        const url = `/api/hero`;
+        return this.http
+            .post(url, JSON.stringify({name: name}), {headers: this.headers})
+            .toPromise()
+            .then(res => res.json().data as Hero)
+            .catch(this.handleError);
     }
 
     update(hero: Hero): Promise<Hero> {
-        const url = `${this.baseUrl}/${hero.id}`;
+        const url = `/api/${hero._id}`;
         return this.http
             .put(url, JSON.stringify(hero), {headers: this.headers})
             .toPromise()
@@ -52,7 +52,7 @@ export class HeroService {
     }
 
     delete(id: number): Promise<void> {
-    const url = `${this.baseUrl}/${id}`;
+    const url = `/api/${id}`;
     return this.http.delete(url, {headers: this.headers})
         .toPromise()
         .then(() => null)
