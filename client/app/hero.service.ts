@@ -43,7 +43,7 @@ export class HeroService {
     }
 
     update(hero: Hero): Promise<Hero> {
-        const url = `/api/${hero._id}`;
+        const url = `/api/hero/${hero._id}`;
         return this.http
             .put(url, JSON.stringify(hero), {headers: this.headers})
             .toPromise()
@@ -52,7 +52,7 @@ export class HeroService {
     }
 
     delete(id: number): Promise<void> {
-    const url = `/api/${id}`;
+    const url = `/api/hero/${id}`;
     return this.http.delete(url, {headers: this.headers})
         .toPromise()
         .then(() => null)
