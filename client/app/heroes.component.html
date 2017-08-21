@@ -6,9 +6,7 @@
   </a>
 </div>
 <br />
-
 <span>My Heroes</span>  
-
 <div class="row">
   <div class="collection">
     <a *ngFor="let hero of heroes" [class.active]="hero === selectedHero" (click)="onSelect(hero)" class="collection-item">
@@ -16,8 +14,6 @@
     </a>
   </div>
 </div>
-
-
 <div *ngIf="selectedHero">
   <span>
     {{selectedHero.name | uppercase}} is my hero
