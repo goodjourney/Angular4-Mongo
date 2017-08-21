@@ -1,6 +1,13 @@
 <div class="row">
   <div class="input-field col s1">
-    <input placeholder="Search" id="hero_search" type="text" class="validate">
-    <label for="hero_search">Hero Search</label>
+    <input #searchBox placeholder="Search" id="hero-search" 
+    (keyup)="search(searchBox.value)" type="text" class="validate">
+    <label for="hero-search">Hero Search</label>
+    <div>
+      <div *ngFor="let hero of heroes | async"
+           (click)="gotoDetail(hero)" class="search-result" >
+        {{hero.name}}
+      </div>
+    </div>
   </div>
 </div>
