@@ -52,7 +52,7 @@ export class HeroSearchComponent implements OnInit {
   }
 
   gotoDetail(hero: Hero): void {
-    let link = ['/detail', hero._id];
+    const link = ['/detail', hero._id];
     this.router.navigate(link);
   }
 }
